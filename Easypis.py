@@ -28,8 +28,9 @@ class EasyPisMod(loader.Module):
         await message.delete()
         await message.respond(args)
 
+        @loader.tds
         async def fllcmd(self, message):
-            """Любой файл реплаем"""
+            """Отправляет файл в ответ на сообщение"""
             args = utils.get_args_raw(message)
             if message.is_reply:
                 reply_message = await message.get_reply_message()
