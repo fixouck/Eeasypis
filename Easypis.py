@@ -10,14 +10,11 @@ from .. import loader, utils
 # Licensed under the GNU GPLv3
 # meta developer: @fix_mods
 
+@loader.tds
 class EasyPisMod(loader.Module):
     """Модуль который выводит аргумент 🎭"""
 
     strings = {'name': 'easypis'}
-
-    async def client_ready(self, client, db):
-        self.db = db
-        self.client = client
 
     async def jcmd(self, message):
         """Любой текст"""
@@ -27,5 +24,11 @@ class EasyPisMod(loader.Module):
             await message.edit("❌ Ошибка: требуется аргумент после команды <code>j</code>")
             return
 
-        await message.delete()
-        await message.respond(args)
+        if message.is_reply:
+            reply_message = await message.get_reply_message()
+            if reply_message.media:
+                await message.client.send_file(message.to_id, reply_message.media, caption=args)
+            else:
+                await message.respond(args)
+        else:
+            await message.respond(args)
