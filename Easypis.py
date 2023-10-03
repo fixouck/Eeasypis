@@ -1,5 +1,6 @@
 from .. import loader, utils
 
+
 #  __ _                      _
 # / _(_)                    | |
 # | |_ ___  _____  _   _  ___| | __
@@ -16,7 +17,7 @@ class EasyPisMod(loader.Module):
 
     strings = {'name': 'easypis'}
 
-    async def jcmd(self, message):
+    async def txtcmd(self, message):
         """Любой текст"""
         args = utils.get_args_raw(message)
 
@@ -26,3 +27,17 @@ class EasyPisMod(loader.Module):
 
         await message.delete()
         await message.respond(args)
+
+        async def fllcmd(self, message):
+            """Любой файл реплаем"""
+            args = utils.get_args_raw(message)
+            if message.is_reply:
+                reply_message = await message.get_reply_message()
+                if reply_message.media:
+                    await message.client.send_file(message.to_id, reply_message.media, caption=args)
+                else:
+                    await message.respond(args)
+            else:
+                await message.respond(args)
+                if not message.is_reply:
+                    await message.edit("❌ Ошибка: требуется ответ на сообщение")
