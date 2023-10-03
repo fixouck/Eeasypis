@@ -1,7 +1,7 @@
 from .. import loader, utils
 
 #  __ _                      _
-#  / _(_)                    | |
+# / _(_)                    | |
 # | |_ ___  _____  _   _  ___| | __
 # |  _| \ \/ / _ \| | | |/ __| |/ /
 # | | | |>  < (_) | |_| | (__|   <
@@ -11,7 +11,7 @@ from .. import loader, utils
 # meta developer: @fix_mods
 
 class EasyPisMod(loader.Module):
-    """Модуль 🎭"""
+    """Модуль который выводит аргумент 🎭"""
 
     strings = {'name': 'easypis'}
 
@@ -24,7 +24,7 @@ class EasyPisMod(loader.Module):
         args = utils.get_args_raw(message)
 
         if not args:
-            await message.edit("Ошибка: требуется аргумент после команды <code>j</code>")
+            await message.edit("❌ Ошибка: требуется аргумент после команды <code>j</code>")
             return
 
         await message.delete()
