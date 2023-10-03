@@ -20,15 +20,9 @@ class EasyPisMod(loader.Module):
         """Любой текст"""
         args = utils.get_args_raw(message)
 
-        if message.is_reply:
-            reply_message = await message.get_reply_message()
-            if reply_message.media:
-                await message.client.send_file(message.to_id, reply_message.media, caption=args)
-            else:
-                await message.respond(args)
-        else:
-            await message.respond(args)
-
         if not args:
             await message.edit("❌ Ошибка: требуется аргумент после команды <code>j</code>")
             return
+
+        await message.delete()
+        await message.respond(args)
