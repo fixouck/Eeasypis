@@ -24,7 +24,7 @@ class EasyPisMod(loader.Module):
         args = utils.get_args_raw(message)
 
         if not args:
-            await message.edit("Ошибка: требуется текст после команды **j**")
+            await message.edit("Ошибка: требуется аргумент после команды <code>j</code>")
             return
 
         await message.delete()
