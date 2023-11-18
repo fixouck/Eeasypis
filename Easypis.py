@@ -17,7 +17,7 @@ class EasyPisMod(loader.Module):
 
     strings = {'name': 'easypis'}
 
-    async def txtcmd(self, message):
+    async def jcmd(self, message):
         """Любой текст"""
         args = utils.get_args_raw(message)
 
